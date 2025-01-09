@@ -1,5 +1,9 @@
 # red_tetris
 
+## todo
+
+- [ ] make boilerplate work
+
 ## tech
 
 - javascript
@@ -47,6 +51,12 @@ some additional resources.
 - [ ] At the first request, the browser retrieves a file from the server `index.html` references a `"<script />"` tag to a file Javascript (`bundle.js`) which contains the entire code of the client application.
 - [ ] The browser runs bundle.js and then there are no more exchanges of HTML files between server and client, the latter is totally standalone for graphical rendering and for application logic management. Only data will be exchanged with the server, bi-directional exchanges in our case are done via socket.io
 
+## bonus
+
+- [ ] scoring system during the game
+- [ ] persistence of scores for each player
+- [ ] several game modes (invisible parts, increased gravity...)
+
 ## push check
 
 - [ ] no `this` except for subclasses of `Error`
@@ -58,3 +68,4 @@ some additional resources.
 - [ ] unit tests must cover at least 70% of the functions
 - [ ] unit tests must cover at least 70% of the lines
 - [ ] unit tests must cover at least 50% of the branches
+- [ ] no pushed .env, API keys...
