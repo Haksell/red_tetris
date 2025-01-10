@@ -1,5 +1,11 @@
 import React from 'react'
-import ReactDom from 'react-dom'
-import App from './containers/app'
+import Tetris from './components/Tetris'
+import { createRoot } from 'react-dom/client'
 
-ReactDom.render(<App />, document.getElementById('tetris'))
+const App = () => {
+  return <Tetris />
+}
+
+const rootElement = document.getElementById('tetris')
+const root = createRoot(rootElement)
+root.render(<App />)

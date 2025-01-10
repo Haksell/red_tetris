@@ -2,18 +2,9 @@
 
 ## todo
 
-- [ ] make boilerplate work
-
-## tech
-
-- javascript
-- functional programming (`lodash`)
-- SPA (React)
-- Redux (or not: Warning: If you need to use a lib that is not up to date. It is then strongly recommended to look for an up-to-date alternative lib!)
-- nodejs
-- socket.io
-- `BrowserRouter` or `MemoryRouter` or other
-- https://www.bryanbraun.com/checkboxland ?
+- [ ] update libs
+- [ ] fix 96 vulnerabilities
+- [ ] install tailwind
 
 ## game
 
