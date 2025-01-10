@@ -3,7 +3,7 @@
 ## todo
 
 - [ ] update libs
-- [ ] fix 96 vulnerabilities
+- [ ] fix 74 vulnerabilities
 - [ ] install tailwind
 
 ## game
