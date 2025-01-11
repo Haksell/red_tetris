@@ -21,6 +21,14 @@ module.exports = {
         },
         exclude: /node_modules/,
       },
+      {
+        test: /\.css$/, // Add this rule to handle .css files
+        use: [
+          'style-loader', // Inject CSS into the DOM
+          'css-loader', // Resolve @import and url() in CSS
+          'postcss-loader', // Use PostCSS (including Tailwind and Autoprefixer)
+        ],
+      },
     ],
   },
 

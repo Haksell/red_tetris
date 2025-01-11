@@ -2,8 +2,7 @@
 
 ## todo
 
-- [ ] fix warnings
-- [ ] install tailwind
+- [ ] styled-components -> tailwind
 
 ## game
 
