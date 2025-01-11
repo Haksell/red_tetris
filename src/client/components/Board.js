@@ -1,27 +1,30 @@
-// src/components/Board.js
 import React from 'react'
-import styled from 'styled-components'
 import Cell from './Cell'
 
-const StyledBoard = styled.div`
-  display: grid;
-  grid-template-rows: repeat(
-    ${(props) => props.height},
-    calc(25vw / ${(props) => props.width})
-  );
-  grid-template-columns: repeat(${(props) => props.width}, 1fr);
-  grid-gap: 1px;
-  border: 2px solid #333;
-  width: 25vw;
-  max-width: 400px;
-  background: #111;
-`
-
 function Board({ stage }) {
+  const width = stage[0].length // 10
+  const height = stage.length // 20
+
   return (
-    <StyledBoard width={stage[0].length} height={stage.length}>
-      {stage.map((row) => row.map((cell, x) => <Cell key={x} type={cell[0]} />))}
-    </StyledBoard>
+    <div
+      className={`
+        grid 
+        gap-[1px] 
+        border-2 
+        border-gray-800 
+        bg-gray-900
+        w-[25vw] 
+        max-w-[400px]
+      `}
+      style={{
+        gridTemplateRows: `repeat(${height}, calc(25vw / ${width}))`,
+        gridTemplateColumns: `repeat(${width}, 1fr)`,
+      }}
+    >
+      {stage.map((row, y) =>
+        row.map((cell, x) => <Cell key={`${y}-${x}`} type={cell[0]} />),
+      )}
+    </div>
   )
 }
 

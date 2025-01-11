@@ -1,4 +1,3 @@
-// src/hooks/usePlayer.js
 import { useState, useCallback } from 'react'
 import { randomTetromino, TETROMINOS } from '../helpers/tetrominos'
 import { STAGE_WIDTH } from '../helpers/createStage'
@@ -22,7 +21,6 @@ export const usePlayer = () => {
     const clonedPlayer = JSON.parse(JSON.stringify(player))
     clonedPlayer.tetromino = rotate(clonedPlayer.tetromino, dir)
 
-    // Check collision while rotating
     let offset = 1
     while (checkCollision(clonedPlayer, stage, { x: 0, y: 0 })) {
       clonedPlayer.pos.x += offset

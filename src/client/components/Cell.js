@@ -1,18 +1,20 @@
 import React from 'react'
-import styled from 'styled-components'
 import { TETROMINOS } from '../helpers/tetrominos'
 
-const StyledCell = styled.div`
-  width: auto;
-  background: rgba(${(props) => props.color}, 0.8);
-  border: ${(props) => (props.type === 0 ? '1px solid #333' : '1px solid #fff')};
-`
-
 function Cell({ type }) {
+  const cellColor = `rgba(${TETROMINOS[type].color}, 0.8)`
+
+  // If type = 0, it's an empty cell -> use a darker border
+  // If not, use a white border
+  const borderClass = type === 0 ? 'border-gray-700' : 'border-white'
+
   return (
-    <StyledCell type={type} color={TETROMINOS[type].color}>
+    <div
+      className={`w-auto border ${borderClass}`}
+      style={{ backgroundColor: cellColor }}
+    >
       {/* For debugging: {type} */}
-    </StyledCell>
+    </div>
   )
 }
 

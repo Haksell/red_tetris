@@ -1,50 +1,29 @@
-// src/components/Tetris.js
 import React, { useState } from 'react'
-import styled from 'styled-components'
-
-// Components & Helpers
 import Board from './Board'
 import { createStage } from '../helpers/createStage'
 import { checkCollision } from '../helpers/collision'
-// Hooks
 import { useInterval } from '../hooks/useInterval'
 import { usePlayer } from '../hooks/usePlayer'
 
-const StyledTetrisWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(135deg, #1f1f1f, #3c3c3c);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-const StyledTetris = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
 function Tetris() {
   const [stage, setStage] = useState(createStage())
-  const [dropTime, setDropTime] = useState(1000) // speed
+  const [dropTime, setDropTime] = useState(1000)
   const [gameOver, setGameOver] = useState(false)
 
   const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer()
 
-  // Move piece down
   const drop = () => {
     if (!checkCollision(player, stage, { x: 0, y: 1 })) {
       updatePlayerPos({ x: 0, y: 1, collided: false })
     } else {
-      // Merge the tetromino into the stage
       if (player.pos.y < 1) {
         // Game Over
         setGameOver(true)
         setDropTime(null)
         return
       }
-      // Merge
+
+      // Merge the tetromino into the stage
       const newStage = stage.map((row) =>
         row.map((cell) => (cell[1] === 'clear' ? [0, 'clear'] : cell)),
       )
@@ -57,9 +36,8 @@ function Tetris() {
         })
       })
 
-      // Check for full rows and clear them
+      // Check for full rows
       const clearedStage = newStage.reduce((acc, row) => {
-        // If every cell is merged (i.e., not 0)
         if (row.every((cell) => cell[0] !== 0)) {
           // Add an empty row at the top
           acc.unshift(new Array(newStage[0].length).fill([0, 'clear']))
@@ -74,7 +52,6 @@ function Tetris() {
     }
   }
 
-  // Key events
   const movePlayer = (dir) => {
     if (!checkCollision(player, stage, { x: dir, y: 0 })) {
       updatePlayerPos({ x: dir, y: 0, collided: false })
@@ -101,7 +78,7 @@ function Tetris() {
         break
       case 40: // Down
         drop()
-        setDropTime(null) // quick drop
+        setDropTime(null) // Quick drop
         break
       case 38: // Up
         playerRotate(stage, 1, checkCollision)
@@ -115,34 +92,43 @@ function Tetris() {
     drop()
   }, dropTime)
 
-  // Reset the board & start the game
   const startGame = () => {
-    // Reset everything
     setStage(createStage())
     resetPlayer()
     setGameOver(false)
-    setDropTime(100)
+    setDropTime(1000)
   }
 
   return (
-    <StyledTetrisWrapper
+    <div
+      className="
+        w-screen 
+        h-screen 
+        bg-gradient-to-br 
+        from-[#1f1f1f] 
+        to-[#3c3c3c]
+        flex 
+        items-center 
+        justify-center
+      "
       role="button"
       tabIndex="0"
       onKeyDown={handleKeyDown}
       onKeyUp={keyUp}
     >
-      <StyledTetris>
-        {gameOver ? (
-          <div style={{ color: '#fff', marginBottom: '20px' }}>Game Over</div>
-        ) : null}
+      <div className="flex flex-col items-center">
+        {gameOver && <div className="text-white mb-5">Game Over</div>}
 
         <Board stage={stage} />
 
-        <button style={{ marginTop: '20px' }} onClick={startGame}>
+        <button
+          className="mt-5 px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded"
+          onClick={startGame}
+        >
           {gameOver ? 'Restart Game' : 'Start Game'}
         </button>
-      </StyledTetris>
-    </StyledTetrisWrapper>
+      </div>
+    </div>
   )
 }
 

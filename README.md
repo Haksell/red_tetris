@@ -2,7 +2,7 @@
 
 ## todo
 
-- [ ] styled-components -> tailwind
+- [ ] make game work
 
 ## game
 
