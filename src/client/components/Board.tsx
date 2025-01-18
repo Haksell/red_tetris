@@ -8,7 +8,7 @@ function Board({ stage }) {
   return (
     <div
       className={`
-        grid 
+        grid
         gap-[1px] 
         border-2 
         border-gray-800 
