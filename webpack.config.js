@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  entry: './src/client/index.js',
+  entry: './src/client/index.tsx',
 
   output: {
     path: path.join(__dirname, 'build'),
@@ -11,25 +11,29 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|ts|tsx)$/, // Include both .js, .ts, .tsx
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
+            presets: [
+              '@babel/preset-env',
+              '@babel/preset-react',
+              '@babel/preset-typescript', // Add the TypeScript preset
+            ],
             plugins: ['@babel/plugin-transform-class-properties'],
           },
         },
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/, // Add this rule to handle .css files
-        use: [
-          'style-loader', // Inject CSS into the DOM
-          'css-loader', // Resolve @import and url() in CSS
-          'postcss-loader', // Use PostCSS (including Tailwind and Autoprefixer)
-        ],
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
+  },
+
+  resolve: {
+    extensions: ['.js', '.ts', '.tsx'], // Add .ts and .tsx to resolve extensions
   },
 
   mode: 'development',
