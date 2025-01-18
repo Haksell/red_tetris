@@ -5,7 +5,6 @@ import TETROMINOS from '../helpers/tetrominos'
 const COLS = 10
 const ROWS = 20
 
-// Utility function to create an empty board
 const createEmptyBoard = () => {
   return Array.from({ length: ROWS }, () => Array(COLS).fill(0))
 }
@@ -14,7 +13,7 @@ const Tetris: React.FC = () => {
   const [board, setBoard] = useState(createEmptyBoard())
   const [currentTetromino, setCurrentTetromino] = useState(TETROMINOS[0]) // TODO: rand
   const [rotation, setRotation] = useState(0)
-  const [position, setPosition] = useState({ x: 3, y: 0 }) // Starting position
+  const [position, setPosition] = useState({ x: 3, y: -2 }) // Starting position
   const [isGameOver, setIsGameOver] = useState(false)
 
   useEffect(() => {
