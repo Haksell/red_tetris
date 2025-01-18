@@ -1,6 +1,11 @@
-export const TETROMINOS = {
+interface Tetromino {
+  shape: string[][] // 2D array representing the Tetromino's shape
+  color: string // TODO: RGB interface
+}
+
+export const TETROMINOS: { [key: string]: Tetromino } = {
   0: {
-    shape: [[0]],
+    shape: [['0']],
     color: '0, 0, 0', // Empty / no color
   },
   I: {
@@ -59,7 +64,7 @@ export const TETROMINOS = {
 /**
  * Returns a random Tetromino from the TETROMINOS list.
  */
-export const randomTetromino = () => {
+export const randomTetromino = (): Tetromino => {
   const tetrominos = 'IJLOSTZ'
   const rand = tetrominos[Math.floor(Math.random() * tetrominos.length)]
   return TETROMINOS[rand]

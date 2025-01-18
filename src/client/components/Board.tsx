@@ -1,7 +1,11 @@
 import React from 'react'
 import Cell from './Cell'
 
-function Board({ stage }) {
+interface BoardProps {
+  stage: [number, string][][]
+}
+
+const Board: React.FC<BoardProps> = ({ stage }) => {
   const width = stage[0].length // 10
   const height = stage.length // 20
 

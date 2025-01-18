@@ -1,11 +1,12 @@
 import React from 'react'
 import { TETROMINOS } from '../helpers/tetrominos'
 
-function Cell({ type }) {
-  const cellColor = `rgba(${TETROMINOS[type].color}, 0.8)`
+interface CellProps {
+  type: number
+}
 
-  // If type = 0, it's an empty cell -> use a darker border
-  // If not, use a white border
+const Cell: React.FC<CellProps> = ({ type }) => {
+  const cellColor = `rgba(${TETROMINOS[type].color}, 0.8)`
   const borderClass = type === 0 ? 'border-gray-700' : 'border-white'
 
   return (
