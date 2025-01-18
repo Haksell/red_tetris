@@ -30,14 +30,10 @@
 - [ ] distribution of pieces for each game
 - [ ] scattering of spectra
 - [ ] `http://<server_name_or_ip>:<port>/<room>/<player_name>` (`admin_name`)
-- [ ] The first to join a game, will be the person in charge, will have control of the game,
-      he can launch it as he pleases. In the end, he will be the only one to be able to restart
-      it. At the moment of starting, one of the remaining players will take this role. ????????
+- [ ] The first to join a game, will be the person in charge, will have control of the game, he can launch it as he pleases. In the end, he will be the only one to be able to restart it. At the moment of starting, one of the remaining players will take this role. ????????
 - [ ] a player can not join a game during the game
 - [ ] several games can be organized simultaneously
-- [ ] It offers an HTTP service (in addition to socket.io) whose only purpose is to provide,
-      at the launch of the connection from the client, the files `index.html` and `bundle.js`, and
-      some additional resources.
+- [ ] It offers an HTTP service (in addition to socket.io) whose only purpose is to provide, at the launch of the connection from the client, the files `index.html` and `bundle.js`, and some additional resources.
 
 ## client
 
