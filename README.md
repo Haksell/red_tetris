@@ -3,6 +3,10 @@
 ## todo
 
 - [ ] make game work
+- [ ] textures like tetr.io
+- [ ] out of focus like tetr.io
+- [ ] music
+- [ ] sound effects
 
 ## game
 

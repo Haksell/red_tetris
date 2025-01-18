@@ -4,9 +4,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 
 const App = () => {
-  return (
-      <Tetris />
-  )
+  return <Tetris />
 }
 
 const rootElement = document.getElementById('tetris')

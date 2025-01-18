@@ -6,52 +6,214 @@ const ROWS = 20
 
 const TETROMINOS = [
   {
-    shape: [
-      [1, 1, 1, 1], // I
+    // I
+    rotations: [
+      [
+        [0, 0, 0, 0],
+        [1, 1, 1, 1],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 1, 0],
+        [0, 0, 1, 0],
+        [0, 0, 1, 0],
+        [0, 0, 1, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [1, 1, 1, 1],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 1, 0, 0],
+        [0, 1, 0, 0],
+        [0, 1, 0, 0],
+        [0, 1, 0, 0],
+      ],
     ],
     color: 'bg-cyan-400',
   },
   {
-    shape: [
-      [1, 1, 1], // T
-      [0, 1, 0],
-    ],
-    color: 'bg-purple-400',
-  },
-  {
-    shape: [
-      [1, 1], // O
-      [1, 1],
-    ],
-    color: 'bg-yellow-400',
-  },
-  {
-    shape: [
-      [1, 1, 0], // L
-      [0, 1, 1],
+    // J
+    rotations: [
+      [
+        [0, 0, 0, 0],
+        [0, 1, 0, 0],
+        [0, 1, 1, 1],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [0, 1, 0, 0],
+        [0, 1, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [1, 1, 1, 0],
+        [0, 0, 1, 0],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 1, 0],
+        [0, 0, 1, 0],
+        [0, 1, 1, 0],
+        [0, 0, 0, 0],
+      ],
     ],
     color: 'bg-orange-400',
   },
   {
-    shape: [
-      [0, 1, 1], // J
-      [1, 1, 0],
+    // L
+    rotations: [
+      [
+        [0, 0, 0, 0],
+        [0, 0, 1, 0],
+        [1, 1, 1, 0],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 0, 1, 0],
+        [1, 1, 1, 0],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 0, 1, 0],
+        [1, 1, 1, 0],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 0, 1, 0],
+        [1, 1, 1, 0],
+        [0, 0, 0, 0],
+      ],
     ],
     color: 'bg-blue-400',
   },
   {
-    shape: [
-      [1, 1, 0], // S
-      [0, 1, 1],
+    // O
+    rotations: [
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [0, 1, 1, 0],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [0, 1, 1, 0],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [0, 1, 1, 0],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [0, 1, 1, 0],
+        [0, 0, 0, 0],
+      ],
     ],
-    color: 'bg-green-400',
+    color: 'bg-yellow-400',
   },
   {
-    shape: [
-      [0, 1, 1], // Z
-      [1, 1, 0],
+    // S
+    rotations: [
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [1, 1, 0, 0],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [1, 1, 0, 0],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [1, 1, 0, 0],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [1, 1, 0, 0],
+        [0, 0, 0, 0],
+      ],
     ],
     color: 'bg-red-400',
+  },
+  {
+    // T
+    rotations: [
+      [
+        [0, 0, 0, 0],
+        [0, 1, 0, 0],
+        [1, 1, 1, 0],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 1, 0, 0],
+        [1, 1, 1, 0],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 1, 0, 0],
+        [1, 1, 1, 0],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 1, 0, 0],
+        [1, 1, 1, 0],
+        [0, 0, 0, 0],
+      ],
+    ],
+    color: 'bg-purple-400',
+  },
+  {
+    // Z
+    rotations: [
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [0, 0, 1, 1],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [0, 0, 1, 1],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [0, 0, 1, 1],
+        [0, 0, 0, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 1, 1, 0],
+        [0, 0, 1, 1],
+        [0, 0, 0, 0],
+      ],
+    ],
+    color: 'bg-green-400',
   },
 ]
 
@@ -62,57 +224,43 @@ const createEmptyBoard = () => {
 
 const Tetris: React.FC = () => {
   const [board, setBoard] = useState(createEmptyBoard())
-  const [currentTetromino, setCurrentTetromino] = useState(TETROMINOS[0])
+  const [currentTetromino, setCurrentTetromino] = useState(TETROMINOS[0]) // TODO: rand
+  const [rotation, setRotation] = useState(0)
   const [position, setPosition] = useState({ x: 3, y: 0 }) // Starting position
   const [isGameOver, setIsGameOver] = useState(false)
 
   useEffect(() => {
-	const handleKeydown = (e: KeyboardEvent) => {
-	  if (e.key === 'ArrowLeft') {
-		moveTetromino(-1, 0)
-	  }
-	  if (e.key === 'ArrowRight') {
-		moveTetromino(1, 0)
-	  }
-	  if (e.key === 'ArrowDown') {
-		moveTetromino(0, 1)
-	  }
-	  if (e.key === 'ArrowUp') {
-		rotateTetromino()
-	  }
-	}
-	
-	window.addEventListener('keydown', handleKeydown)
-	return () => window.removeEventListener('keydown', handleKeydown)
-  }, [position, currentTetromino, isGameOver] )
-  
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        moveTetromino(-1, 0)
+      }
+      if (e.key === 'ArrowRight') {
+        moveTetromino(1, 0)
+      }
+      if (e.key === 'ArrowDown') {
+        moveTetromino(0, 1)
+      }
+      if (e.key === 'ArrowUp') {
+        setRotation((x) => x + 1)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeydown)
+    return () => window.removeEventListener('keydown', handleKeydown)
+  }, [position, currentTetromino, isGameOver])
 
   // Handle moving the tetromino
   const moveTetromino = (dx: number, dy: number) => {
     if (isGameOver) return
 
     const newPosition = { x: position.x + dx, y: position.y + dy }
-    if (isValidMove(currentTetromino.shape, newPosition)) {
+    if (isValidMove(currentTetromino.rotations[rotation % 4], newPosition)) {
       setPosition(newPosition)
     }
   }
 
-  const rotateMatrix = (matrix: number[][]): number[][] => {
-	return matrix[0].map((_, index) => matrix.map(row => row[index])).reverse()
-  }
-  
-
-  const rotateTetromino = () => {
-    if (isGameOver) return
-
-    const rotatedShape = rotateMatrix(currentTetromino.shape)
-    if (isValidMove(rotatedShape, position)) {
-      setCurrentTetromino({ ...currentTetromino, shape: rotatedShape })
-    }
-  }
-
   // Validate if tetromino is in a valid position
-  const isValidMove = (shape: number[][], position: { x: number, y: number }) => {
+  const isValidMove = (shape: number[][], position: { x: number; y: number }) => {
     return shape.every((row, rIdx) =>
       row.every((cell, cIdx) => {
         const newX = position.x + cIdx
@@ -121,14 +269,14 @@ const Tetris: React.FC = () => {
           cell === 0 ||
           (newX >= 0 && newX < COLS && newY < ROWS && board[newY][newX] === 0)
         )
-      })
+      }),
     )
   }
 
   // Place the tetromino on the board when it reaches the bottom
   const placeTetromino = () => {
     const newBoard = [...board]
-    currentTetromino.shape.forEach((row, rIdx) => {
+    currentTetromino.rotations[rotation % 4].forEach((row, rIdx) => {
       row.forEach((cell, cIdx) => {
         if (cell !== 0) {
           const newX = position.x + cIdx
@@ -144,7 +292,7 @@ const Tetris: React.FC = () => {
   }
 
   const checkLines = () => {
-    let newBoard = board.filter(row => row.some(cell => cell === 0)) // Keep non-full rows
+    let newBoard = board.filter((row) => row.some((cell) => cell === 0)) // Keep non-full rows
     const clearedLines = ROWS - newBoard.length
     newBoard = [...Array(clearedLines).fill(Array(COLS).fill(0)), ...newBoard] // Add empty rows at the top
     setBoard(newBoard)
@@ -155,7 +303,7 @@ const Tetris: React.FC = () => {
 
   // Handle game over
   const checkGameOver = () => {
-    if (board[0].some(cell => cell !== 0)) {
+    if (board[0].some((cell) => cell !== 0)) {
       setIsGameOver(true)
     }
   }
@@ -163,7 +311,9 @@ const Tetris: React.FC = () => {
   useInterval(() => {
     if (isGameOver) return
     const nextY = position.y + 1
-    if (isValidMove(currentTetromino.shape, { x: position.x, y: nextY })) {
+    if (
+      isValidMove(currentTetromino.rotations[rotation % 4], { x: position.x, y: nextY })
+    ) {
       setPosition({ x: position.x, y: nextY })
     } else {
       placeTetromino()
@@ -178,13 +328,15 @@ const Tetris: React.FC = () => {
           row.map((cell, colIdx) => (
             <div
               key={`${rowIdx}-${colIdx}`}
-              className={`absolute w-8 h-8 ${cell ? currentTetromino.color : 'bg-gray-900'}`}
+              className={`absolute w-8 h-8 ${
+                cell ? currentTetromino.color : 'bg-gray-900'
+              }`}
               style={{
                 left: `${colIdx * 30}px`,
                 top: `${rowIdx * 30}px`,
               }}
             />
-          ))
+          )),
         )}
       </div>
       {isGameOver && (
