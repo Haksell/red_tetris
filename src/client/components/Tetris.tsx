@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useInterval } from '../hooks/useInterval'
 
-// Define the board dimensions
 const COLS = 10
 const ROWS = 20
-const BOARD_WIDTH = COLS * 30 // 30px per block
-const BOARD_HEIGHT = ROWS * 30 // 30px per block
 
-// Define Tetrimino shapes
 const TETROMINOS = [
   {
     shape: [
