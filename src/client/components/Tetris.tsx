@@ -1,133 +1,201 @@
-import React, { useState } from 'react'
-import Board from './Board'
-import { createStage } from '../helpers/createStage'
-import { checkCollision } from '../helpers/collision'
+import React, { useEffect, useState } from 'react'
 import { useInterval } from '../hooks/useInterval'
-import { usePlayer } from '../hooks/usePlayer'
 
-function Tetris() {
-  const [stage, setStage] = useState(createStage())
-  const [dropTime, setDropTime] = useState(1000)
-  const [gameOver, setGameOver] = useState(false)
+// Define the board dimensions
+const COLS = 10
+const ROWS = 20
+const BOARD_WIDTH = COLS * 30 // 30px per block
+const BOARD_HEIGHT = ROWS * 30 // 30px per block
 
-  const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer()
+// Define Tetrimino shapes
+const TETROMINOS = [
+  {
+    shape: [
+      [1, 1, 1, 1], // I
+    ],
+    color: 'bg-cyan-400',
+  },
+  {
+    shape: [
+      [1, 1, 1], // T
+      [0, 1, 0],
+    ],
+    color: 'bg-purple-400',
+  },
+  {
+    shape: [
+      [1, 1], // O
+      [1, 1],
+    ],
+    color: 'bg-yellow-400',
+  },
+  {
+    shape: [
+      [1, 1, 0], // L
+      [0, 1, 1],
+    ],
+    color: 'bg-orange-400',
+  },
+  {
+    shape: [
+      [0, 1, 1], // J
+      [1, 1, 0],
+    ],
+    color: 'bg-blue-400',
+  },
+  {
+    shape: [
+      [1, 1, 0], // S
+      [0, 1, 1],
+    ],
+    color: 'bg-green-400',
+  },
+  {
+    shape: [
+      [0, 1, 1], // Z
+      [1, 1, 0],
+    ],
+    color: 'bg-red-400',
+  },
+]
 
-  const drop = () => {
-    if (!checkCollision(player, stage, { x: 0, y: 1 })) {
-      updatePlayerPos({ x: 0, y: 1, collided: false })
-    } else {
-      if (player.pos.y < 1) {
-        // Game Over
-        setGameOver(true)
-        setDropTime(null)
-        return
-      }
+// Utility function to create an empty board
+const createEmptyBoard = () => {
+  return Array.from({ length: ROWS }, () => Array(COLS).fill(0))
+}
 
-      // Merge the tetromino into the stage
-      const newStage = stage.map((row) =>
-        row.map((cell) => (cell[1] === 'clear' ? [0, 'clear'] : cell)),
-      )
+const Tetris: React.FC = () => {
+  const [board, setBoard] = useState(createEmptyBoard())
+  const [currentTetromino, setCurrentTetromino] = useState(TETROMINOS[0])
+  const [position, setPosition] = useState({ x: 3, y: 0 }) // Starting position
+  const [isGameOver, setIsGameOver] = useState(false)
 
-      player.tetromino.forEach((row, y) => {
-        row.forEach((value, x) => {
-          if (value !== '0') {
-            newStage[y + player.pos.y][x + player.pos.x] = [value, 'merged']
-          }
-        })
+  useEffect(() => {
+	const handleKeydown = (e: KeyboardEvent) => {
+	  if (e.key === 'ArrowLeft') {
+		moveTetromino(-1, 0)
+	  }
+	  if (e.key === 'ArrowRight') {
+		moveTetromino(1, 0)
+	  }
+	  if (e.key === 'ArrowDown') {
+		moveTetromino(0, 1)
+	  }
+	  if (e.key === 'ArrowUp') {
+		rotateTetromino()
+	  }
+	}
+	
+	window.addEventListener('keydown', handleKeydown)
+	return () => window.removeEventListener('keydown', handleKeydown)
+  }, [position, currentTetromino, isGameOver] )
+  
+
+  // Handle moving the tetromino
+  const moveTetromino = (dx: number, dy: number) => {
+    if (isGameOver) return
+
+    const newPosition = { x: position.x + dx, y: position.y + dy }
+    if (isValidMove(currentTetromino.shape, newPosition)) {
+      setPosition(newPosition)
+    }
+  }
+
+  const rotateMatrix = (matrix: number[][]): number[][] => {
+	return matrix[0].map((_, index) => matrix.map(row => row[index])).reverse()
+  }
+  
+
+  const rotateTetromino = () => {
+    if (isGameOver) return
+
+    const rotatedShape = rotateMatrix(currentTetromino.shape)
+    if (isValidMove(rotatedShape, position)) {
+      setCurrentTetromino({ ...currentTetromino, shape: rotatedShape })
+    }
+  }
+
+  // Validate if tetromino is in a valid position
+  const isValidMove = (shape: number[][], position: { x: number, y: number }) => {
+    return shape.every((row, rIdx) =>
+      row.every((cell, cIdx) => {
+        const newX = position.x + cIdx
+        const newY = position.y + rIdx
+        return (
+          cell === 0 ||
+          (newX >= 0 && newX < COLS && newY < ROWS && board[newY][newX] === 0)
+        )
       })
+    )
+  }
 
-      // Check for full rows
-      const clearedStage = newStage.reduce((acc, row) => {
-        if (row.every((cell) => cell[0] !== 0)) {
-          // Add an empty row at the top
-          acc.unshift(new Array(newStage[0].length).fill([0, 'clear']))
-        } else {
-          acc.push(row)
+  // Place the tetromino on the board when it reaches the bottom
+  const placeTetromino = () => {
+    const newBoard = [...board]
+    currentTetromino.shape.forEach((row, rIdx) => {
+      row.forEach((cell, cIdx) => {
+        if (cell !== 0) {
+          const newX = position.x + cIdx
+          const newY = position.y + rIdx
+          newBoard[newY][newX] = 1
         }
-        return acc
-      }, [])
+      })
+    })
+    setBoard(newBoard)
+    checkLines()
+    setPosition({ x: 3, y: 0 }) // Reset position
+    setCurrentTetromino(TETROMINOS[Math.floor(Math.random() * TETROMINOS.length)])
+  }
 
-      setStage(clearedStage)
-      resetPlayer()
+  const checkLines = () => {
+    let newBoard = board.filter(row => row.some(cell => cell === 0)) // Keep non-full rows
+    const clearedLines = ROWS - newBoard.length
+    newBoard = [...Array(clearedLines).fill(Array(COLS).fill(0)), ...newBoard] // Add empty rows at the top
+    setBoard(newBoard)
+    if (clearedLines > 0) {
+      // You can track score here by adding clearedLines
     }
   }
 
-  const movePlayer = (dir) => {
-    if (!checkCollision(player, stage, { x: dir, y: 0 })) {
-      updatePlayerPos({ x: dir, y: 0, collided: false })
-    }
-  }
-
-  const keyUp = ({ keyCode }) => {
-    if (!gameOver) {
-      if (keyCode === 40) {
-        // Down arrow
-        setDropTime(1000)
-      }
-    }
-  }
-
-  const handleKeyDown = (e) => {
-    if (gameOver) return
-    switch (e.keyCode) {
-      case 37: // Left
-        movePlayer(-1)
-        break
-      case 39: // Right
-        movePlayer(1)
-        break
-      case 40: // Down
-        drop()
-        setDropTime(null) // Quick drop
-        break
-      case 38: // Up
-        playerRotate(stage, 1, checkCollision)
-        break
-      default:
-        break
+  // Handle game over
+  const checkGameOver = () => {
+    if (board[0].some(cell => cell !== 0)) {
+      setIsGameOver(true)
     }
   }
 
   useInterval(() => {
-    drop()
-  }, dropTime)
-
-  const startGame = () => {
-    setStage(createStage())
-    resetPlayer()
-    setGameOver(false)
-    setDropTime(1000)
-  }
+    if (isGameOver) return
+    const nextY = position.y + 1
+    if (isValidMove(currentTetromino.shape, { x: position.x, y: nextY })) {
+      setPosition({ x: position.x, y: nextY })
+    } else {
+      placeTetromino()
+      checkGameOver()
+    }
+  }, 500) // Game speed: 500ms
 
   return (
-    <div
-      className="
-        w-screen 
-        h-screen 
-        bg-gradient-to-br 
-        from-[#1f1f1f] 
-        to-[#3c3c3c]
-        flex 
-        items-center 
-        justify-center
-      "
-      role="button"
-      tabIndex="0"
-      onKeyDown={handleKeyDown}
-      onKeyUp={keyUp}
-    >
-      <div className="flex flex-col items-center">
-        {gameOver && <div className="text-white mb-5">Game Over</div>}
-
-        <Board stage={stage} />
-
-        <button
-          className="mt-5 px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded"
-          onClick={startGame}
-        >
-          {gameOver ? 'Restart Game' : 'Start Game'}
-        </button>
+    <div className="flex flex-col items-center justify-center mt-10">
+      <div className="relative w-[300px] h-[600px] border-2 border-gray-900 bg-gray-800">
+        {board.map((row, rowIdx) =>
+          row.map((cell, colIdx) => (
+            <div
+              key={`${rowIdx}-${colIdx}`}
+              className={`absolute w-8 h-8 ${cell ? currentTetromino.color : 'bg-gray-900'}`}
+              style={{
+                left: `${colIdx * 30}px`,
+                top: `${rowIdx * 30}px`,
+              }}
+            />
+          ))
+        )}
       </div>
+      {isGameOver && (
+        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+          <h2 className="text-white text-3xl">Game Over</h2>
+        </div>
+      )}
     </div>
   )
 }
