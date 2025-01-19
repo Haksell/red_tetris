@@ -2,8 +2,11 @@
 
 ## todo
 
-- [ ] make game work
-- [ ] textures like tetr.io
+- [ ] telnov: fix rotation on border (shift if outside map)
+- [ ] telnov: textures like tetr.io
+- [ ] brisse: fix page layout
+- [ ] brisse: background
+- [ ] brisse: menu
 - [ ] out of focus like tetr.io
 - [ ] music
 - [ ] sound effects
