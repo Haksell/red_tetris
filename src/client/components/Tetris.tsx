@@ -5,6 +5,8 @@ import TETROMINOS from '../helpers/tetrominos'
 const COLS = 10
 const ROWS = 20
 
+const STARTING_POSITION = { x: 3, y: -2 }
+
 // Create an empty 2D array for the board
 const createEmptyBoard = () => Array.from({ length: ROWS }, () => Array(COLS).fill(0))
 
@@ -34,9 +36,9 @@ const getMergedBoard = (
 
 const Tetris: React.FC = () => {
   const [board, setBoard] = useState(createEmptyBoard())
-  const [currentTetromino, setCurrentTetromino] = useState(TETROMINOS[0]) // pick random if you like
+  const [currentTetromino, setCurrentTetromino] = useState(TETROMINOS[0]) // TODO: pick random
   const [rotation, setRotation] = useState(0)
-  const [position, setPosition] = useState({ x: 3, y: -2 }) // Starting position
+  const [position, setPosition] = useState(STARTING_POSITION)
   const [isGameOver, setIsGameOver] = useState(false)
 
   useEffect(() => {
@@ -96,7 +98,7 @@ const Tetris: React.FC = () => {
     setBoard(newBoard)
     checkLines(newBoard)
     // Reset piece
-    setPosition({ x: 3, y: -2 })
+    setPosition(STARTING_POSITION)
     setRotation(0)
     setCurrentTetromino(TETROMINOS[Math.floor(Math.random() * TETROMINOS.length)])
   }
