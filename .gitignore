@@ -1,17 +1,3 @@
-# Dependencies
 node_modules/
-
-# Build
 dist/
-
-# Test
-coverage/
-
-# Environment
 .env
-*.local
-
-# OS
-.DS_Store
-.directory
-.claude/
