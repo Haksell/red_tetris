@@ -11,35 +11,36 @@
 
 ## mandatory
 
-- implement tetris
+- implement tetris:
   - [ ] each field is 10 columns wide and 20 rows tall
   - [ ] game ends when a new piece can no longer enter the field
   - [ ] completing a line causes it to disappear
   - [ ] use original tetromino shapes
+- movement:
+  - [ ] left/right: move horizontally
+  - [ ] up: rotate piece
+  - [ ] down: soft drop
+  - [ ] spacebar: hard drop
 - multiplayer:
   - [ ] each player receives the same sequence of pieces
   - [ ] when a player clears lines, opponents receive n-1 indestructible lines at the bottom of their fields
   - [ ] players can see their opponent names
   - [ ] players can see a "spectrum" view of their fields, showing the height of each column's highest block
   - [ ] no scoring system, the last remaining player is the winner
-- [ ] support both solo and multiplayer modes
-- movement:
-  - [ ] left/right: move horizontally
-  - [ ] up: rotate piece
-  - [ ] down: soft drop
-  - [ ] spacebar: hard drop
-- [ ] players join games via an URL like: `http://<server_name_or_ip>:<port>/<room>/<player_name>.`
-- [ ] use appropriate routers such as `BrowserRouter` or `MemoryRouter` for url handling
-- [ ] the first player to join becomes the host and controls when to start or restart the game
-- [ ] if the current host leaves the game, one of the remaining players will take this role
-- [ ] once started, no new players can join until the next round
-- [ ] games end when one player remains
-- [ ] multiple concurrent games are supported
+  - [ ] games end when one player remains
+- matchmaking:
+  - [ ] players join games via an URL like: `http://<server_name_or_ip>:<port>/<room>/<player_name>.`
+  - [ ] the first player to join becomes the host and controls when to start or restart the game
+  - [ ] if the current host leaves the game, one of the remaining players will take this role
+  - [ ] once started, no new players can join until the next round
+  - [ ] multiple concurrent games are supported
 - the server:
   - [ ] runs an asynchronous loop handling events via socket.io
   - [ ] must serve `index.html`, `bundle.js` and static assets with http
 - the client:
   - [ ] is a browser-based single-page application
+  - [ ] uses appropriate routers such as `BrowserRouter` or `MemoryRouter` for url handling
+  - [ ] supports both solo and multiplayer modes
   - [ ] loads `index.html` which includes a reference to `bundle.js` containing the full application
   - [ ] no further html files are exchanged: all rendering and logic is managed client-side
 
