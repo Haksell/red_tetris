@@ -22,7 +22,7 @@
 ## mandatory
 
 - implement tetris
-  - [ ] each field is 10 columns widre and 20 rows tall
+  - [ ] each field is 10 columns wide and 20 rows tall
   - [ ] game ends when a new piece can no longer enter the field
   - [ ] completing a line causes it to disappear
   - [ ] use original tetromino shapes
