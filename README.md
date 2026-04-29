@@ -8,16 +8,6 @@
 - backend: node.js
 - communication: http/socket.io
 - testing: jest?
-- functional library options:
-  - lodash
-  - ramda
-  - remeda (looks like the best for typescript)
-  - rambda
-  - radash
-  - fp-ts
-  - ts-belt
-  - effect-ts
-  - or just use modern js/ts features and don't overthink it
 
 ## mandatory
 
