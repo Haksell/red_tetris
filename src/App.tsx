@@ -1,4 +1,4 @@
-import { Routes, Route, Link, Outlet } from 'react-router-dom'
+import { Routes, Route, Outlet, NavLink } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import SoloPage from './pages/SoloPage'
 import MultiplayerPage from './pages/MultiplayerPage'
@@ -12,17 +12,20 @@ const Layout = () => (
   </>
 )
 
+const navlinkStyle = ({ isActive }: { isActive: boolean }) =>
+  `text-blue-500 ${isActive ? 'font-bold' : ''}`
+
 const Navbar = () => (
   <nav className="flex gap-4 mb-4">
-    <Link to="/" className="text-blue-500">
+    <NavLink to="/" className={navlinkStyle}>
       Home
-    </Link>
-    <Link to="/solo" className="text-blue-500">
+    </NavLink>
+    <NavLink to="/solo" className={navlinkStyle}>
       Solo
-    </Link>
-    <Link to="/multiplayer" className="text-blue-500">
+    </NavLink>
+    <NavLink to="/multiplayer" className={navlinkStyle}>
       Multiplayer
-    </Link>
+    </NavLink>
   </nav>
 )
 
