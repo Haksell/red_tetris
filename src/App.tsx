@@ -28,10 +28,10 @@ const Navbar = () => (
 
 const App = () => (
   <Routes>
-    <Route path="/" element={<HomePage />} />
+    <Route index element={<HomePage />} />
     <Route element={<Layout />}>
-      <Route path="/solo" element={<SoloPage />} />
-      <Route path="/multiplayer" element={<MultiplayerPage />} />
+      <Route path="solo" element={<SoloPage />} />
+      <Route path="multiplayer" element={<MultiplayerPage />} />
     </Route>
   </Routes>
 )
