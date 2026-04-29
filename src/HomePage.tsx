@@ -10,7 +10,7 @@ const GameButton: React.FC<{
   </button>
 )
 
-const App: React.FC = () => {
+const HomePage: React.FC = () => {
   return (
     <div className="flex flex-col justify-center items-center bg-rose-600 space-y-4 py-4 min-h-screen">
       <GameButton text={'SOLO'} onClick={() => {}} />
@@ -19,4 +19,4 @@ const App: React.FC = () => {
   )
 }
 
-export default App
+export default HomePage
