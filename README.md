@@ -39,7 +39,7 @@
   - [ ] must serve `index.html`, `bundle.js` and static assets with http
 - the client:
   - [ ] is a browser-based single-page application
-  - [ ] uses appropriate routers such as `BrowserRouter` or `MemoryRouter` for url handling
+  - [x] uses appropriate routers such as `BrowserRouter` or ~~`MemoryRouter`~~ for url handling
   - [ ] supports both solo and multiplayer modes
   - [ ] loads `index.html` which includes a reference to `bundle.js` containing the full application
   - [ ] no further html files are exchanged: all rendering and logic is managed client-side
