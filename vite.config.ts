@@ -28,13 +28,13 @@ Disabling it is a hack to respect the subject, not a desirable solution.
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  build: {
-    rolldownOptions: {
-      output: {
-        entryFileNames: `assets/bundle.js`,
-        assetFileNames: `assets/[name].[ext]`,
-        codeSplitting: false,
-      },
-    },
-  },
+  // build: {
+  //   rolldownOptions: {
+  //     output: {
+  //       entryFileNames: `assets/bundle.js`,
+  //       assetFileNames: `assets/[name].[ext]`,
+  //       codeSplitting: false,
+  //     },
+  //   },
+  // },
 })
