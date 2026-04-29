@@ -38,11 +38,11 @@
   - [ ] runs an asynchronous loop handling events via socket.io
   - [ ] must serve `index.html`, `bundle.js` and static assets with http
 - the client:
-  - [ ] is a browser-based single-page application
+  - [x] is a browser-based single-page application
+  - [x] loads `index.html` which includes a reference to `bundle.js` containing the full application
+  - [x] no further html files are exchanged: all rendering and logic is managed client-side
   - [x] uses appropriate routers such as `BrowserRouter` or ~~`MemoryRouter`~~ for url handling
   - [ ] supports both solo and multiplayer modes
-  - [ ] loads `index.html` which includes a reference to `bundle.js` containing the full application
-  - [ ] no further html files are exchanged: all rendering and logic is managed client-side
 
 ## bonus
 
