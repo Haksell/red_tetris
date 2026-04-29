@@ -70,3 +70,9 @@
   - 70% of lines
   - 50% of branches
 - `.env` not pushed
+
+## problems with subject (make an intra ticket)
+
+- `<canvas>` not allowed
+- `build.js` without hash makes caching harder
+- boilerplate completely out of date and does not compile
