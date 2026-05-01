@@ -5,7 +5,7 @@ const GameButton: React.FC<{
 }> = ({ text }) => (
   <Link
     className={`flex justify-center items-center bg-white border-4 border-black text-black font-mono tracking-widest hover:bg-black hover:text-white transition duration-300 w-2/3 max-w-sm  py-4 px-4 text-2xl`}
-    to="/solo"
+    to={`/${text.toLowerCase()}`}
   >
     {text}
   </Link>

@@ -4,12 +4,12 @@ import SoloPage from './pages/SoloPage'
 import MultiplayerPage from './pages/MultiplayerPage'
 
 const Layout = () => (
-  <>
+  <div className="flex flex-col min-h-screen">
     <Navbar />
-    <div className="p-4">
+    <main className="flex-1 flex">
       <Outlet />
-    </div>
-  </>
+    </main>
+  </div>
 )
 
 const navlinkStyle = ({ isActive }: { isActive: boolean }) =>
@@ -31,7 +31,7 @@ const Navbar = () => (
 
 const App = () => (
   <Routes>
-    <Route index element={<HomePage />} />
+    <Route path="/" element={<HomePage />} />
     <Route element={<Layout />}>
       <Route path="solo" element={<SoloPage />} />
       <Route path="multiplayer" element={<MultiplayerPage />} />

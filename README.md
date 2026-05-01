@@ -4,6 +4,7 @@
 
 - tetrominos spawn in rows 21 and 22, or just 21 for the I tetromino
 - implement wall kicks (akira for I) https://tetris.fandom.com/wiki/Super_Rotation_System#Wall_kicks
+- remove useless main page, default to solo mode?
 
 ## stack
 
