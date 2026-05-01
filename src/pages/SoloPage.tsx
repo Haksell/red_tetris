@@ -199,8 +199,8 @@ const SoloPage: React.FC = () => {
   const grid = createGrid()
 
   return (
-    <div className="flex-1 w-full flex items-center justify-center bg-slate-950">
-      <div className="p-2 rounded-xl bg-slate-900 backdrop-blur-xl shadow-2xl border border-white/10">
+    <div className="p-2 flex-1 flex items-center justify-center bg-slate-950">
+      <div className="p-2 rounded-lg bg-slate-900 border border-white/10">
         <div className="p-1 rounded-lg border border-white/10">
           <div
             className="grid bg-slate-900 p-2 rounded-md shadow-inner gap-0.5"
