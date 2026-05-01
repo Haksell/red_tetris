@@ -1,4 +1,4 @@
-import { Routes, Route, Outlet, NavLink } from 'react-router-dom'
+import { Routes, Route, Outlet, NavLink, Navigate } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import SoloPage from './pages/SoloPage'
 import MultiplayerPage from './pages/MultiplayerPage'
@@ -36,6 +36,7 @@ const App = () => (
       <Route path="solo" element={<SoloPage />} />
       <Route path="multiplayer" element={<MultiplayerPage />} />
     </Route>
+    <Route path="*" element={<Navigate to="/" replace />} />
   </Routes>
 )
 
