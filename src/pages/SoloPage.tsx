@@ -156,7 +156,6 @@ const TETROMINOS = {
   ],
 }
 
-const CELL_SIZE = 32
 const GRID_HEIGHT = 20
 const GRID_WIDTH = 10
 
@@ -186,12 +185,8 @@ const createGrid = () => {
 
 const Cell: React.FC<{ type: string }> = ({ type }) => (
   <div
-    className="rounded-sm transition-all duration-200"
-    style={{
-      width: CELL_SIZE,
-      height: CELL_SIZE,
-      backgroundColor: COLORS[type] ?? EMPTY_COLOR,
-    }}
+    className="rounded-sm transition-all duration-200 h-full w-full"
+    style={{ backgroundColor: COLORS[type] ?? EMPTY_COLOR }}
   />
 )
 
@@ -203,9 +198,10 @@ const SoloPage: React.FC = () => {
       <div className="p-2 rounded-lg bg-slate-900 border border-white/10">
         <div className="p-1 rounded-lg border border-white/10">
           <div
-            className="grid bg-slate-900 p-2 rounded-md shadow-inner gap-0.5"
+            className="grid bg-slate-900 p-2 rounded-md shadow-inner gap-0.5 w-full min-w-64"
             style={{
-              gridTemplateColumns: `repeat(${GRID_WIDTH}, ${CELL_SIZE}px)`,
+              gridTemplateColumns: `repeat(${GRID_WIDTH}, 1fr)`,
+              aspectRatio: `${GRID_WIDTH} / ${GRID_HEIGHT}`,
             }}
           >
             {grid.map((row, rowIndex) =>
