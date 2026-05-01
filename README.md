@@ -1,5 +1,10 @@
 # red_tetris
 
+## immediate todo
+
+- tetrominos spawn in rows 21 and 22, or just 21 for the I tetromino
+- implement wall kicks https://tetris.fandom.com/wiki/Super_Rotation_System#Wall_kicks
+
 ## stack
 
 - language: typescript
@@ -7,7 +12,7 @@
 - css framework: tailwind
 - backend: node.js
 - communication: http/socket.io
-- testing: jest?
+- testing: vitest | jest
 
 ## mandatory
 
@@ -46,9 +51,10 @@
 
 ## bonus
 
-- [ ] add a scoring system
-- [ ] persist player scores
+- [ ] add a scoring system with persistence (for solo gameplay)
+- [ ] local two-player mode
 - [ ] introduce new game modes
+- [ ] mobile support
 - [ ] deploy on the web
 - ...
 
@@ -76,3 +82,4 @@
 - `<canvas>` not allowed
 - `build.js` without hash makes caching harder
 - boilerplate completely out of date and does not compile
+
